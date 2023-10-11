@@ -5,6 +5,7 @@ export const BookCardContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 350px;
+  padding: 20px;
   align-items: center;
   position: relative;
 
@@ -13,14 +14,6 @@ export const BookCardContainer = styled.div`
     height: 95%;
     object-fit: cover;
     margin-bottom: 5px;
-  }
-
-  button {
-    width: 80%;
-    opacity: 0.7;
-    position: absolute;
-    top: 255px;
-    display: none;
   }
 
   &:hover {
@@ -39,7 +32,7 @@ export const Footer = styled.div`
   width: 100%;
   height: 5%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   font-size: 18px;
 `;
 
@@ -50,4 +43,20 @@ export const Name = styled.span`
 
 export const Price = styled.span`
   width: 10%;
+`;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+`;
+
+export const Button = styled.button`
+  /* Add your button styling here */
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
 `;

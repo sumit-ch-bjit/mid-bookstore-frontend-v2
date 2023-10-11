@@ -74,16 +74,16 @@ const UpdateBookForm = () => {
         </div>
         <div>
           <Controller
-            name="price"
+            name="Price"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
               <FormInput
                 label="Price"
-                type="number"
+                type="text"
                 // required
-                onChange={field.onChange}
                 name="Price"
+                onChange={field.onChange}
                 value={field.value}
               />
             )}

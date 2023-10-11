@@ -2,7 +2,6 @@ import BookItem from "../bookItem/bookItem.component";
 import { Fragment } from "react";
 import { useEffect, useState } from "react";
 import { DirectoryContainer, Title } from "./directory.styles";
-import bookApi from "../../api/bookApi";
 import Pagination from "../pagination/pagination.component";
 import LoadingSpinner from "../spinner/spinner.component";
 import apiInstance from "../../api/apiInstance";
@@ -11,8 +10,7 @@ const Directory = () => {
   const [books, setBooks] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const pageSize = 4;
-  const { getBook } = bookApi();
+  const pageSize = 10;
 
   useEffect(() => {
     apiInstance
@@ -31,7 +29,7 @@ const Directory = () => {
 
   return (
     <>
-      {books.length == 0 ? (
+      {books.length === 0 ? (
         <LoadingSpinner />
       ) : (
         <>

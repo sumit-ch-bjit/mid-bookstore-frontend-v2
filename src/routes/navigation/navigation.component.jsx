@@ -12,6 +12,8 @@ import {
   selectCurrentUser,
   selectCurrentUserRole,
 } from "../../store/user/user.selector";
+
+import { resetCart } from "../../store/cart/cart.reducer";
 import { selectIsCartOpen } from "../../store/cart/cart.selector";
 import { ReactComponent as StoreLogo } from "../../assets/bookstore.svg";
 import { useNavigate } from "react-router-dom";
@@ -32,6 +34,7 @@ const Navigation = () => {
 
   const signOutHandler = () => {
     dispatch(removeCurrentUser());
+    dispatch(resetCart());
     navigate("/");
   };
 

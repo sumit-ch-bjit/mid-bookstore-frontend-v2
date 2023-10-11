@@ -1,6 +1,12 @@
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 import { useDispatch, useSelector } from "react-redux";
-import { BookCardContainer, Footer, Name, Price } from "./bookItem.styles";
+import {
+  BookCardContainer,
+  Footer,
+  Name,
+  Price,
+  ButtonContainer,
+} from "./bookItem.styles";
 import bookImage from "../../assets/book.png";
 import {
   selectCurrentUser,
@@ -33,11 +39,10 @@ const BookItem = ({ book }) => {
       .post("/cart/add-to-cart", {
         userId: userId,
         bookId: _id,
-        quantity: cartItems,
+        quantity: 1,
       })
-      .then((res) => console.log(res))
+      .then(() => dispatch(addItemToCart(book)))
       .catch((err) => console.log(err));
-    dispatch(addItemToCart(book));
   };
 
   const updateBook = () => {
@@ -50,24 +55,22 @@ const BookItem = ({ book }) => {
   return (
     <BookCardContainer>
       <img src={bookImage} alt={`${title}`} onClick={bookDetailsHandler} />
+
+      {userRole !== "admin" && (
+        <Button onClick={addBookToCart}>Add to cart</Button>
+      )}
+
+      {userRole === "admin" && (
+        <ButtonContainer>
+          <Button onClick={updateBook}>Update</Button>
+          <Button onClick={updateBook}>Delete</Button>
+        </ButtonContainer>
+      )}
+
       <Footer>
         <Name>{title}</Name>
         <Price>{price}</Price>
       </Footer>
-      {currentUser ? (
-        <Button
-          buttonType={BUTTON_TYPE_CLASSES.inverted}
-          onClick={addBookToCart}
-        >
-          Add to cart
-        </Button>
-      ) : null}
-
-      {userRole === "admin" ? (
-        <Button buttonType={BUTTON_TYPE_CLASSES.inverted} onClick={updateBook}>
-          Update Book
-        </Button>
-      ) : null}
     </BookCardContainer>
   );
 };
